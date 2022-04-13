@@ -54,10 +54,6 @@ public class Usuarios {
 	@JsonIgnoreProperties("usuarios")
 	private List<Depoimentos> depoimentos;
 
-	@OneToMany(mappedBy = "usuarios", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("usuarios")
-	private List<Agenda> agenda;
-
 	public Long getId() {
 		return id;
 	}
@@ -144,14 +140,6 @@ public class Usuarios {
 
 	public void setDepoimentos(List<Depoimentos> depoimentos) {
 		this.depoimentos = depoimentos;
-	}
-
-	public List<Agenda> getAgenda() {
-		return agenda;
-	}
-
-	public void setAgenda(List<Agenda> agenda) {
-		this.agenda = agenda;
 	}
 
 }
