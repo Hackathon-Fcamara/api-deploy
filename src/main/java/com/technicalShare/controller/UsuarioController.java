@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.technicalShare.model.UsuarioLogin;
 import com.technicalShare.model.Usuarios;
 import com.technicalShare.repository.UsuarioRepository;
@@ -68,9 +69,15 @@ public class UsuarioController {
 				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 	}
 	
-	@DeleteMapping
-	public void delete (@PathVariable Long id) {
-		repo.deleteById(id);
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Usuarios> deletarUsuarios(@PathVariable Long id) {
+		if(repo.findById(id).isPresent()) {
+			repo.deleteById(id);
+			return ResponseEntity.status(HttpStatus.OK).build();
+		}
+		return ResponseEntity.notFound().build();
+		
+		
 	}
 	
 
